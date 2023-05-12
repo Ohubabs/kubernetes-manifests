@@ -1,9 +1,11 @@
 # Cluster IP  Service
+---
 apiVersion: v1
 kind: Service
 metadata:  
   name: my-clusterip-service
 spec:
+  type: NodePort
   selector:    
     app: nginx
   type: ClusterIP
@@ -12,3 +14,6 @@ spec:
     port: 80
     targetPort: 80
     protocol: TCP
+    
+# Ensure that the remote access security group for the node has a security group open to all traffic to allow the different ranges of the NodePort when
+using that type of service.
